@@ -1,5 +1,6 @@
 @extends('layout._main',["title" => "Index"])
 @section('content')
+@include('component.terms_condiition')
         <div class="row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 gx-5">
             @foreach (\App\Models\ObProduct::with("product_details_")->get() as $product)
             <div class="col mb-3">
@@ -23,7 +24,7 @@
                         </div>
                         <div class="text-center fw-bold" style="font-size: 23px">
                             <div class=" mt-4"  >
-                                <button class="btn btn-light" style="background: #e9e9e9 !important">Terms & Condition</button>
+                                <button data-bs-toggle="modal" data-bs-target="#terms-condition-modal" class="btn btn-light" style="background: #e9e9e9 !important">Terms & Condition</button>
                             </div>
                             <div class="mt-3">
                                 <div class="row mx-auto" style="width: 60%">
