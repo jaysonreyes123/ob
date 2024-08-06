@@ -19,10 +19,12 @@ td{
             
         @endif
         @include('component.status-message')
+        
         <div class="row">
             <div class="col-lg-8">
                 <div class="card shadow h-100">
                     <div class="card-body">
+                        
                         <div class="card-title">
                             Order Summary
                         </div>
@@ -43,14 +45,14 @@ td{
                                         
                                     </td>
                                     <td>1</td>
-                                    <td>${{$product->price}}</td>
+                                    <td>${{$product->shipping}}</td>
                                 </tr>
                             </tbody>
                             <tfoot>
                                 <tr>
                                     <td></td>
                                     <td><span class="h5">Total</span></td>
-                                    <td><span class="h5">${{$product->price}}</span></td>
+                                    <td><span class="h5">${{$product->shipping}}</span></td>
                                 </tr>
                             </tfoot>
                         </table>
@@ -60,6 +62,7 @@ td{
             <div class="col-lg-4">
                 <div class="card h-100 shadow mb-3">
                     <div class="card-body">
+                                     <img src="{{ asset('assets/img/card.jpg') }}" alt="" style="width:390px;">
                         <form class="g-3" id="form" method="post">
                             @csrf
                             <h5 class="card-title mb-3">Customer Information</h5>
@@ -81,6 +84,7 @@ td{
                               @endphp
                               @include('component.text-field',["fieldname" => $fieldname,"type" => $type, 'value' => $value])
                             @endforeach
+                       
                             <h5 class="card-title mt-4 mb-3">Card Information</h5>
                             <div class="col-12 mb-3">
                                 <label >Card Number</label>
@@ -104,12 +108,18 @@ td{
                                         <div class="form-group">
                                             <div class="form-group">
                                                 <input type="text" name="cvc" value="{{$model->cvc ?? ""}}" placeholder="CVC" id="cvc" maxlength="3" class="form-control">
+                                                <img src="{{ asset('assets/img/cvv-img.png') }}" alt="" style="width:90px;">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <h5 class="card-title mt-4 mb-3">Payment Option</h5>
+                            <div class="disclaimer" style="padding: 10px 10px 0 10px;">
+                           By submitting, you affirm to have read and agreed to our 
+                             <a href="javascript:void(0);" onclick="javascript:openNewWindow('a.php','modal');" style="color:inherit;text-decoration:underline; cursor: pointer;">Terms &amp; Conditions</a>.  
+                         <!--  <a href='#' data-modal-url='/sk-cp-1/terms/' style='color:inherit;text-decoration:underline; cursor: pointer;'>Terms &amp; Conditions</a>. After your  trial period has expired, you will be enrolled in our membership program for $129.95 per month. You can cancel anytime by calling 866-272-2509.  -->                               
+                        </div>
+                            <!--<h5 class="card-title mt-4 mb-3">Payment Option</h5>-->
                             @php
                               $payments = array('magpie');
                             @endphp
@@ -121,12 +131,16 @@ td{
                             <input type="hidden" id="price" name="price">
                             <input type="hidden" id="quantity" value="1" name="quantity">
                             <div class="col-12 mb-4 mt-4">
-                              <button class="btn btn-primary w-100" type="submit">Pay</button>
+                              <button class="btn btn-primary w-100" type="submit">Pay Now</button>
                             </div>
                             <div class="col-12 mb-4 mt-4">
                               <a class="btn btn-warning w-100" id="clearform" >Clear</a>
                             </div>
+                            
+                             
                           </form>
+                              <img src="{{ asset('assets/img/secureicons.jpg') }}" alt="" style="width:370px;">
+                         
                     </div>
                   </div>
             </div>

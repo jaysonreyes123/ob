@@ -2,8 +2,8 @@
      
   
      <!-- Favicons -->
-        <link href="{{ asset('assets/img/hmc1.png') }}" rel="icon">
-        <link href="{{ asset('assets/img/hmc1.png') }}" rel="apple-touch-icon">
+        <link href="{{ asset('assets/img/linkspark.jpg') }}" rel="icon">
+        <link href="{{ asset('assets/img/linkspark.jpg') }}" rel="apple-touch-icon">
       
         <!-- Google Fonts -->
         <link href="https://fonts.gstatic.com" rel="preconnect">
