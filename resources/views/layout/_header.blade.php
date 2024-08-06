@@ -3,10 +3,10 @@
 
     <div class="d-flex align-items-center justify-content-between">
       {{-- <i class="bi bi-list toggle-sidebar-btn" style="margin-right: 15px"></i> --}}
-      <a href="index.html" class="align-items-center ">
-        <img src="{{ asset('assets/img/hmc1.png') }}" alt="" style="width:90px;">
+   
+        <img src="{{ asset('assets/img/linkspark.png') }}" alt="" style="width:90px;">
       
-      </a>
+    
     </div><!-- End Logo -->
 
     <nav class="header-nav ms-auto">
