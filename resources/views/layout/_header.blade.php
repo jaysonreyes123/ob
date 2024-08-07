@@ -1,11 +1,11 @@
  <!-- ======= Header ======= -->
- <header id="header" class="header fixed-top d-flex align-items-center">
+ <header id="header" class="header fixed-top d-flex align-items-center" style="height: auto;">
 
     <div class="d-flex align-items-center justify-content-between">
       {{-- <i class="bi bi-list toggle-sidebar-btn" style="margin-right: 15px"></i> --}}
-   
-        <img src="{{ asset('assets/img/linkspark.png') }}" alt="" style="width:90px;">
-      
+        <a href="{{ route('index',['access_token' => $access_token]) }}">
+          <img src="{{ asset('assets/img/linkspark.png') }}" alt="" style="width:70px;">
+        </a>
     
     </div><!-- End Logo -->
 

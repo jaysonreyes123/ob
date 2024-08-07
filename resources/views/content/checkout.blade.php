@@ -11,16 +11,11 @@ td{
 }
 </style>
     <div class="container">
-        @if (Session::has('error'))
-            <div class="alert alert-danger" role="alert">
-                <h4 class="alert-heading">Something wrong</h4>
-                <p>{!!Session::get('error')!!}</p>
-            </div>
-            
-        @endif
         @include('component.status-message')
-        
         <div class="row">
+            <div class="col-lg-12 mt-3 mb-3">
+              <a href="{{ route('index',['access_token' => $access_token]) }}"  class="btn btn-primary px-4"><i style="vertical-align: text-bottom" class="bi bi-arrow-left"></i> Back</a>
+            </div>
             <div class="col-lg-8">
                 <div class="card shadow h-100">
                     <div class="card-body">
@@ -28,7 +23,8 @@ td{
                         <div class="card-title">
                             Order Summary
                         </div>
-                        <table class="table">
+                        <div style="position: sticky">
+                          <table class="table">
                             <thead>
                                 <th>Product</th>
                                 <th>Quantity</th>
@@ -56,13 +52,14 @@ td{
                                 </tr>
                             </tfoot>
                         </table>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="card h-100 shadow mb-3">
                     <div class="card-body">
-                                     <img src="{{ asset('assets/img/card.jpg') }}" alt="" style="width:390px;">
+                                     <img src="{{ asset('assets/img/card.jpg') }}" alt="" style="width: 100%;margin-top: 10px">
                         <form class="g-3" id="form" method="post">
                             @csrf
                             <h5 class="card-title mb-3">Customer Information</h5>
@@ -126,9 +123,12 @@ td{
                             @foreach ($payments as $payment )
                               @include('component.payment-method',["payment" => $payment])
                             @endforeach
-                            <input type="hidden" name="unit_price" id="unit_price">
+                            @php
+                              $price =  $product->shipping - $product->price;
+                            @endphp
+                            <input type="hidden" name="unit_price" id="unit_price" value="{{$price}}">
                             <input type="hidden" id="product" name="product" value="{{$id}}">
-                            <input type="hidden" id="price" name="price">
+                            <input type="hidden" id="price" name="price" value="{{$price}}">
                             <input type="hidden" id="quantity" value="1" name="quantity">
                             <div class="col-12 mb-4 mt-4">
                               <button class="btn btn-primary w-100" type="submit">Pay Now</button>
@@ -139,7 +139,7 @@ td{
                             
                              
                           </form>
-                              <img src="{{ asset('assets/img/secureicons.jpg') }}" alt="" style="width:370px;">
+                              <img src="{{ asset('assets/img/secureicons.jpg') }}" alt="" style="width:100%;">
                          
                     </div>
                   </div>
@@ -150,7 +150,6 @@ td{
 <script>
     var payments_option = @json($payments);
     var id = @json($id);
-    console.log(id);
     var retry_option = 100;
     var role = "ob";
     var fields = {
@@ -174,9 +173,7 @@ td{
     }
 
 
-      loadField();
-
-    
+    // loadField();
 
     $("#form").on('submit',function(e){
       e.preventDefault();

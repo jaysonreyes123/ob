@@ -7,6 +7,7 @@ use App\Constant\Api;
 use App\Models\Failed;
 use App\Models\Success;
 use App\Models\Transaction;
+use App\Models\User;
 use Carbon\Carbon;
 use Curl;
 
@@ -37,7 +38,7 @@ class TransactionController extends Controller
         ]);
         $transaction_model->status = "failed";
         $transaction_model->save();
-        return redirect()->route('product.show',["id"=>$transaction_model->product])->with(["error-message" => $error_message]);
+        return redirect()->route('product.show',["id"=>$transaction_model->product,"access_token"=>User::ACCESS_TOKEN])->with(["error-message" => $error_message]);
 
     }
 
@@ -77,10 +78,10 @@ class TransactionController extends Controller
             ]);
         }
         if($success == 1){
-            return redirect()->route('agent')->with(["success-message" => $status_message ]);
+            return redirect()->route('product.show',["id"=>$transaction_model->product,"access_token"=>User::ACCESS_TOKEN])->with(["success-message" => $status_message ]);
         }
         else{
-            return redirect()->route('agent')->with(["error-message" => $status_message ]);
+            return redirect()->route('product.show',["id"=>$transaction_model->product,"access_token"=>User::ACCESS_TOKEN])->with(["error-message" => $status_message ]);
         }
         
     }

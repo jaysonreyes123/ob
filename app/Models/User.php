@@ -13,6 +13,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     const ROLE = array('ob' => 4,'collection' => 5);
+    const ACCESS_TOKEN = "qFPzGzglv4bna49xSkMQ3kyeHnbEdtV8uXdktNdn1DvYcZpK8k1OohTMNEiOILLWoWNF9uqJIxk5KoxcswvUGmybfEaT3DfFAVcBjcdkmjXpoPkGpKCeAMIWIRRQt8au";
 
     /**
      * The attributes that are mass assignable.

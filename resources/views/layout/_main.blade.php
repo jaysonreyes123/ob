@@ -13,7 +13,11 @@
       <style>
         body{
             font-size: 16px;
-            font-family:"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif 
+            font-family:"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+            background-image: url('{{ asset("assets/img/bg.jpg") }}');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 100% 100%; 
         }
         #main{
             min-height: calc(100vh - 130px);

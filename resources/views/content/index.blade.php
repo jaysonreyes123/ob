@@ -1,7 +1,5 @@
 @extends('layout._main',["title" => "Index"])
 @section('content')
-@include('component.terms_condiition')
-
   <style>
     body{
       background-image: url('{{ asset("assets/img/bg.jpg") }}');
@@ -41,12 +39,12 @@
                         </div>
                         <div class="text-center fw-bold" style="font-size: 23px">
                             <div class=" mt-4"  >
-                                <button data-bs-toggle="modal" data-bs-target="#terms-condition-modal" class="btn btn-light" style="background: 
+                                <button  class="btn btn-light terms_condition" data-id="{{$product->id}}" style="background: 
 rgba(185, 146, 184, 0.53)
  !important; font-size:13px;"><b>Terms & Condition</b></button>
                             </div>
                             <div class="mt-3">
-                                <div class="row mx-auto" style="width: 60%">
+                                <div class="row mx-auto" style="width: 70%">
                                     @if ((int) $product->price != 0)
                                         <div class="col">
                                             <div class="text-muted" style="position: relative">
@@ -63,11 +61,23 @@ rgba(185, 146, 184, 0.53)
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-center mb-2" style="border-top: none">
-                        <a href="{{ route('product.show', ['id'=>$product->id]) }}" class="btn btn-success w-75">Buy Now <i class="bi bi-arrow-right"></i></a>
+                        <a href="{{ route('product.show', ['id'=>$product->id,"access_token" => $access_token]) }}" class="btn btn-success w-75">Buy Now <i class="bi bi-arrow-right"></i></a>
                     </div>
                   </div>
             </div>
+            <textarea hidden name="" id="id-{{$product->id}}" cols="30" rows="10">{{$product->terms_condition}}</textarea>
             @endforeach
         </div>
     </div>
+@include('component.terms_condiition');
+@push('script')
+    <script>
+        $(".terms_condition").click(function(){
+            const id = $(this).data('id');
+            const terms_condition = $("#id-"+id).val();
+            $("#terms-condition-content").html(terms_condition);
+            $("#terms-condition-modal").modal('show');
+        })
+    </script>
+@endpush
 @endsection
